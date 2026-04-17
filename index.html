@@ -3,57 +3,84 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trivia Especial ✨</title>
+    <title>Una Experiencia para Ti ✨</title>
     <style>
-        :root { --primary: #e63946; --bg: #fdf0d5; --text: #003049; }
-        body { font-family: 'Segoe UI', sans-serif; background-color: var(--bg); color: var(--text); margin: 0; display: flex; justify-content: center; align-items: center; min-height: 100vh; overflow-x: hidden; }
-        #game-container { width: 90%; max-width: 400px; background: white; padding: 25px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); text-align: center; }
-        .btn { background: var(--primary); color: white; border: none; padding: 12px 20px; border-radius: 10px; font-size: 16px; cursor: pointer; margin: 8px 0; width: 100%; transition: transform 0.2s; }
-        .btn:active { transform: scale(0.95); }
+        :root { --gold: #c5a059; --dark: #1a1a1a; --white: #ffffff; }
+        body { font-family: 'Optima', 'Segoe UI', serif; background-color: var(--dark); color: var(--white); margin: 0; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
+        
+        /* Contenedor Principal */
+        #main-card { width: 85%; max-width: 400px; padding: 40px 20px; text-align: center; border: 1px solid rgba(197, 160, 89, 0.3); border-radius: 2px; background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(10px); }
+
+        /* Pantalla de Introducción */
+        #intro-screen { animation: fadeIn 2s ease-in; }
+        .lotus { font-size: 40px; margin-bottom: 20px; color: var(--gold); }
+        h1 { font-weight: 300; letter-spacing: 4px; text-transform: uppercase; font-size: 1.5rem; margin-bottom: 30px; }
+        .subtitle { font-style: italic; color: #aaa; margin-bottom: 40px; line-height: 1.6; }
+
+        /* Botones Elegantes */
+        .btn-gold { background: transparent; color: var(--gold); border: 1px solid var(--gold); padding: 15px 40px; text-transform: uppercase; letter-spacing: 2px; cursor: pointer; transition: 0.4s; font-size: 14px; }
+        .btn-gold:hover { background: var(--gold); color: var(--dark); }
+
+        /* Sección Trivia */
+        .trivia-btn { background: rgba(197, 160, 89, 0.1); color: var(--white); border: 1px solid rgba(197, 160, 89, 0.5); padding: 12px; margin: 10px 0; width: 100%; cursor: pointer; text-align: left; padding-left: 20px; }
         .hidden { display: none; }
-        .progress { font-size: 12px; color: #666; margin-bottom: 10px; }
-        img { width: 100%; border-radius: 15px; margin-top: 15px; }
-        .feedback { margin-top: 10px; font-weight: bold; font-size: 14px; }
+
+        /* Invitación Final */
+        .final-box { border: 1px solid var(--gold); padding: 20px; margin-top: 20px; background: rgba(197, 160, 89, 0.05); }
+        img { width: 100%; margin-top: 20px; filter: sepia(0.3); }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body>
 
-<div id="game-container">
-    <div id="quiz-section">
-        <div class="progress" id="progress">Pregunta 1 de 4</div>
-        <h2 id="question">Cargando...</h2>
+<div id="main-card">
+    <div id="intro-screen">
+        <div class="lotus">🌸</div>
+        <h1>Un nuevo horizonte</h1>
+        <p class="subtitle">"La verdadera aventura comienza cuando nos atrevemos a probar algo diferente por primera vez."</p>
+        <button class="btn-gold" onclick="startExperience()">Descubrir</button>
+    </div>
+
+    <div id="quiz-section" class="hidden">
+        <p id="progress" style="color: var(--gold); font-size: 12px; letter-spacing: 2px;"></p>
+        <h2 id="question" style="font-weight: 300; margin-bottom: 30px;"></h2>
         <div id="options"></div>
-        <div id="feedback" class="feedback"></div>
+        <p id="feedback" style="margin-top: 20px; font-size: 14px; min-height: 40px;"></p>
     </div>
 
     <div id="final-section" class="hidden">
-        <h1 style="color: var(--primary);">¡ERES UNA EXPERTA! 🏆</h1>
-        <p>No importa el puntaje, lo importante es que ahora estás lista para lo que viene...</p>
-        <div style="background: #eee; padding: 15px; border-radius: 15px; border: 2px dashed var(--primary);">
-            <h3>🍱 Invitación Especial 🍱</h3>
-            <p><b>Motivo:</b> Tu primera experiencia con Sushi & Teppanyaki</p>
-            <p><b>Fecha:</b> Sábado 18 de Abril</p>
-            <p><b>Hora:</b> 7:30 PM</p>
+        <h1 style="color: var(--gold);">Invitación Formal</h1>
+        <div class="final-box">
+            <p style="letter-spacing: 1px;">SÁBADO 18 DE ABRIL</p>
+            <p style="font-size: 20px; color: var(--gold);">7:30 PM</p>
+            <p style="font-size: 14px; color: #888;">Nuestra primera experiencia Sushi & Teppanyaki</p>
         </div>
-        <p><i>Eres la mejor novia y te mereces este manjar.</i></p>
-        <img src="https://cuadrosdecorativosynquira.com.ar/amanecer-oriental-sumi-e/" alt="Amanecer Oriental">
-        <p>¡Te amo, Santiago! ❤️</p>
+        <img src="http://googleusercontent.com/image_collection/image_retrieval/8059751347451811701_0" alt="Amanecer">
+        <p style="margin-top: 30px; font-style: italic;">"Porque contigo, cada primera vez es perfecta."</p>
+        <p style="font-size: 12px; letter-spacing: 2px;">TE AMO, SANTIAGO ❤️</p>
     </div>
 </div>
 
 <script>
     const questions = [
-        { q: "¿En qué país se originó el Sushi tal como lo conocemos hoy?", a: ["China", "Japón", "Corea"], c: 1, fact: "¡Correcto! Aunque tiene raíces antiguas, Japón lo perfeccionó." },
-        { q: "¿Qué es el 'Teppanyaki' realmente?", a: ["Un tipo de pescado", "Cocinar en una plancha de acero", "Una salsa dulce"], c: 1, fact: "Exacto. 'Teppan' significa plancha y 'yaki' significa parrilla." },
-        { q: "¿Cómo se llama el alga negra que envuelve los rollitos de sushi?", a: ["Nori", "Wakame", "Kombu"], c: 0, fact: "¡Eso es! Es alga Nori deshidratada." },
-        { q: "¿Cuál de estos NO es un ingrediente tradicional del sushi?", a: ["Arroz avinagrado", "Pescado fresco", "Queso Mozzarella"], c: 2, fact: "¡Muy bien! El queso es un invento moderno, ¡pero sabe rico!" }
+        { q: "¿En qué país nació el arte del Sushi?", a: ["China", "Japón", "Vietnam"], c: 1, fact: "¡Correcto! Japón lo convirtió en una obra de arte." },
+        { q: "El Teppanyaki es cocinar frente a ti sobre...", a: ["Piedras calientes", "Una plancha de acero", "Brasas de madera"], c: 1, fact: "¡Exacto! Es todo un espectáculo de fuego y acero." },
+        { q: "¿Cuál es la función del jengibre (Gari) en el sushi?", a: ["Darle picante", "Limpiar el paladar", "Adornar el plato"], c: 1, fact: "Así es. Sirve para limpiar el sabor entre cada pieza." },
+        { q: "¿Cómo se llama el maestro experto en sushi?", a: ["Sensei", "Itamae", "Shifu"], c: 1, fact: "¡Impresionante! El 'Itamae' estudia años para dominarlo." }
     ];
 
     let currentQ = 0;
 
+    function startExperience() {
+        document.getElementById('intro-screen').classList.add('hidden');
+        document.getElementById('quiz-section').classList.remove('hidden');
+        loadQuestion();
+    }
+
     function loadQuestion() {
         const qData = questions[currentQ];
-        document.getElementById('progress').innerText = `Pregunta ${currentQ + 1} de 4`;
+        document.getElementById('progress').innerText = `PASO ${currentQ + 1} DE ${questions.length}`;
         document.getElementById('question').innerText = qData.q;
         const optionsDiv = document.getElementById('options');
         optionsDiv.innerHTML = '';
@@ -61,7 +88,7 @@
 
         qData.a.forEach((opt, i) => {
             const btn = document.createElement('button');
-            btn.className = 'btn';
+            btn.className = 'trivia-btn';
             btn.innerText = opt;
             btn.onclick = () => checkAnswer(i);
             optionsDiv.appendChild(btn);
@@ -73,11 +100,11 @@
         const feedback = document.getElementById('feedback');
         
         if(i === qData.c) {
-            feedback.style.color = "green";
+            feedback.style.color = "var(--gold)";
             feedback.innerText = qData.fact;
         } else {
-            feedback.style.color = "orange";
-            feedback.innerText = "¡Casi! Pero no te preocupes, aprenderemos juntos. La respuesta era: " + qData.a[qData.c];
+            feedback.style.color = "#888";
+            feedback.innerText = "Interesante... pero aprenderemos que es: " + qData.a[qData.c];
         }
 
         setTimeout(() => {
@@ -87,15 +114,13 @@
             } else {
                 showFinal();
             }
-        }, 2500);
+        }, 2200);
     }
 
     function showFinal() {
         document.getElementById('quiz-section').classList.add('hidden');
         document.getElementById('final-section').classList.remove('hidden');
     }
-
-    loadQuestion();
 </script>
 </body>
 </html>
