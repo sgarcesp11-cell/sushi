@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trivia Especial ✨</title>
+    <style>
+        :root { --primary: #e63946; --bg: #fdf0d5; --text: #003049; }
+        body { font-family: 'Segoe UI', sans-serif; background-color: var(--bg); color: var(--text); margin: 0; display: flex; justify-content: center; align-items: center; min-height: 100vh; overflow-x: hidden; }
+        #game-container { width: 90%; max-width: 400px; background: white; padding: 25px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); text-align: center; }
+        .btn { background: var(--primary); color: white; border: none; padding: 12px 20px; border-radius: 10px; font-size: 16px; cursor: pointer; margin: 8px 0; width: 100%; transition: transform 0.2s; }
+        .btn:active { transform: scale(0.95); }
+        .hidden { display: none; }
+        .progress { font-size: 12px; color: #666; margin-bottom: 10px; }
+        img { width: 100%; border-radius: 15px; margin-top: 15px; }
+        .feedback { margin-top: 10px; font-weight: bold; font-size: 14px; }
+    </style>
+</head>
+<body>
+
+<div id="game-container">
+    <div id="quiz-section">
+        <div class="progress" id="progress">Pregunta 1 de 4</div>
+        <h2 id="question">Cargando...</h2>
+        <div id="options"></div>
+        <div id="feedback" class="feedback"></div>
+    </div>
+
+    <div id="final-section" class="hidden">
+        <h1 style="color: var(--primary);">¡ERES UNA EXPERTA! 🏆</h1>
+        <p>No importa el puntaje, lo importante es que ahora estás lista para lo que viene...</p>
+        <div style="background: #eee; padding: 15px; border-radius: 15px; border: 2px dashed var(--primary);">
+            <h3>🍱 Invitación Especial 🍱</h3>
+            <p><b>Motivo:</b> Tu primera experiencia con Sushi & Teppanyaki</p>
+            <p><b>Fecha:</b> Sábado 18 de Abril</p>
+            <p><b>Hora:</b> 7:30 PM</p>
+        </div>
+        <p><i>Eres la mejor novia y te mereces este manjar.</i></p>
+        <img src="https://via.placeholder.com/400x300?text=Nuestra+Foto+Aqui" alt="Nosotros">
+        <p>¡Te amo, Santiago! ❤️</p>
+    </div>
+</div>
+
+<script>
+    const questions = [
+        { q: "¿En qué país se originó el Sushi tal como lo conocemos hoy?", a: ["China", "Japón", "Corea"], c: 1, fact: "¡Correcto! Aunque tiene raíces antiguas, Japón lo perfeccionó." },
+        { q: "¿Qué es el 'Teppanyaki' realmente?", a: ["Un tipo de pescado", "Cocinar en una plancha de acero", "Una salsa dulce"], c: 1, fact: "Exacto. 'Teppan' significa plancha y 'yaki' significa parrilla." },
+        { q: "¿Cómo se llama el alga negra que envuelve los rollitos de sushi?", a: ["Nori", "Wakame", "Kombu"], c: 0, fact: "¡Eso es! Es alga Nori deshidratada." },
+        { q: "¿Cuál de estos NO es un ingrediente tradicional del sushi?", a: ["Arroz avinagrado", "Pescado fresco", "Queso Mozzarella"], c: 2, fact: "¡Muy bien! El queso es un invento moderno, ¡pero sabe rico!" }
+    ];
+
+    let currentQ = 0;
+
+    function loadQuestion() {
+        const qData = questions[currentQ];
+        document.getElementById('progress').innerText = `Pregunta ${currentQ + 1} de 4`;
+        document.getElementById('question').innerText = qData.q;
+        const optionsDiv = document.getElementById('options');
+        optionsDiv.innerHTML = '';
+        document.getElementById('feedback').innerText = '';
+
+        qData.a.forEach((opt, i) => {
+            const btn = document.createElement('button');
+            btn.className = 'btn';
+            btn.innerText = opt;
+            btn.onclick = () => checkAnswer(i);
+            optionsDiv.appendChild(btn);
+        });
+    }
+
+    function checkAnswer(i) {
+        const qData = questions[currentQ];
+        const feedback = document.getElementById('feedback');
+        
+        if(i === qData.c) {
+            feedback.style.color = "green";
+            feedback.innerText = qData.fact;
+        } else {
+            feedback.style.color = "orange";
+            feedback.innerText = "¡Casi! Pero no te preocupes, aprenderemos juntos. La respuesta era: " + qData.a[qData.c];
+        }
+
+        setTimeout(() => {
+            currentQ++;
+            if(currentQ < questions.length) {
+                loadQuestion();
+            } else {
+                showFinal();
+            }
+        }, 2500);
+    }
+
+    function showFinal() {
+        document.getElementById('quiz-section').classList.add('hidden');
+        document.getElementById('final-section').classList.remove('hidden');
+    }
+
+    loadQuestion();
+</script>
+</body>
+</html>
